@@ -58,3 +58,11 @@ class Element {
   // Change element styles
   element3.changeStyle("border", "1px solid black");
   element3.changeStyle("padding", "10px");
+
+
+// --------- Questions -------------- //
+// 1.  I don't understand how element1.addStyle(style1.style); sets the style for element1?
+    // Is the setStyle method considered an object with the inner property style (denoted as this.style) that we can access?
+// 2. Why use [] to access the style?
+    // Is style an attribute or a property?
+
