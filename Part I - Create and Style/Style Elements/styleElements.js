@@ -2,7 +2,7 @@ class Element {
     constructor(name) {
       this.name = name;
       this.element = document.createElement('div');
-      this.element.textContent = this.name;
+      // this.element.textContent = this.name;
     }
   
     create() {
@@ -65,4 +65,6 @@ class Element {
     // Is the setStyle method considered an object with the inner property style (denoted as this.style) that we can access?
 // 2. Why use [] to access the style?
     // Is style an attribute or a property?
+
+
 
