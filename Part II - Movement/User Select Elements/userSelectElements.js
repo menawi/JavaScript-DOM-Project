@@ -1,8 +1,3 @@
-// Don't understand :
-// 1. bind
-// 2. I don't see how the movement function is specific only to the selected item
-
-
 class Element {
     constructor(name) {
         this.name = name;
@@ -11,7 +6,7 @@ class Element {
         this.x = 0;
         this.y = 0;
         this.isSelected = false;
-        this.element.addEventListener('click', this.toggleSelection.bind(this));
+        this.element.addEventListener('click', () => this.toggleSelection());
     }
 
     create() {
@@ -22,42 +17,27 @@ class Element {
         Object.assign(this.element.style, style);
     }
 
-    move(dx, dy) {
-        this.x += dx;
-        this.y += dy;
-        this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
-    }
 
     toggleSelection() {
         this.isSelected = !this.isSelected;
         if (this.isSelected) {
             this.element.classList.add('selected');
+            console.log(this.element.classList.value);
         } else {
             this.element.classList.remove('selected');
+            console.log(this.element.classList.value);
         }
     }
 }
 
-// Create instances of the elements
-const element1 = new Element("Element 1");
 
-// Append elements to the DOM
-element1.create();
-
-// Move elements non-interactively
-element1.move(100, 50);
-
-// User movement controls
-function handleUserMovement(event) {
-    const key = event.key;
-    switch (key) {
-        case "ArrowUp":
-            element1.move(0, -10);
-            break;
-        // Handle other movement keys if needed
-        // 👉 You can write the code here !
-    }
+function createBox(name, style) {
+    const box = new Element(name);
+    box.create();
+    box.addStyle(style);
+    return box;
 }
 
-// Register DOM events
-document.addEventListener('keydown', handleUserMovement);
+const greenBox = createBox('green box', { 'background': 'green', 'width': '100px', 'height': '100px' })
+
+// I want to add user control ONLY if the element is selected

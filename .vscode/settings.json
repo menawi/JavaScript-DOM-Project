@@ -1,0 +1,59 @@
+{
+    // editor
+    "editor.fontSize": 12,
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80,
+    // terminal 
+    "terminal.integrated.fontSize": 12,
+    // javascript
+    "[javascript]": {
+        "editor.maxTokenizationLineLength": 2500,
+        "javascript.autoClosingTags": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.suggest.showSnippets": true,
+    },
+    // json and jsonc
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "vscode.json-language-features",
+    },
+    // html
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    // markdown
+    "[markdown]": {
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.fontSize": 12,
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 80,
+    },
+    // preview
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.revealIfOpen": true,
+    // copilot
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
+        "html": true,
+        "css": true,
+        "json": true,
+        "jsconc": true,
+    }
+}
