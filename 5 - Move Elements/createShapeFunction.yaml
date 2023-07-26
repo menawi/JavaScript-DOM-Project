@@ -1,0 +1,48 @@
+# Constructor Function: ElementConstructor
+# This a YAML file that describes the constructor function for the ElementConstructor class.
+
+Function: "ElementConstructor"
+  # 
+  Parameters:
+    - p : type
+        description: "The type of the HTML element to create."
+        type: string
+        default: "div"
+    - p : _class
+        description: "The CSS class to add to the created element."
+        type: string
+        default: ""
+    - p: appendParent
+        description: "The parent element where the created element will be appended."
+        type: string
+        default: "document.body"
+    - p: style
+        description: "The style options to apply to the created element."
+        type: object
+        default: {}
+# 
+  Methods:
+    - m: createElement
+        description: "Create a new HTML element with the specified properties."
+        - input: none
+          type: none
+        - output: return
+          type: object
+          description: "The created HTML element."
+    - m: setElementStyle
+        description: "Apply the specified style options to the provided element"
+        - input:
+          type: object
+          description: "The HTML element to apply the styles to."
+        - output:
+          type: object
+          description: "The modified HTML element with the applied styles."
+
+
+# --------------------------- Example --------------------------- #
+
+Instance : "Red Square"
+    Constructor: ElementConstructor
+        Parameters: { 
+          type: "div",  _class: "red square", appendParent: "document.body", style: { backgroundColor: "red",  width: "100px",  height: "100px" } 
+          }

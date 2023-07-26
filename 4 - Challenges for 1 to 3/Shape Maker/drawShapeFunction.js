@@ -3,7 +3,6 @@
 // 1. Provide options for the user to select different shapes such as rectangles, circles, and triangles.
 // 2. When the user selects a shape, it should appear on the page
 
-
 // Inspiration used in the code structure: 
 // https://www.theodinproject.com/lessons/node-path-javascript-objects-and-object-constructors
 // https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/#2-function-invocation
@@ -55,5 +54,3 @@ greenSq.styleShape().styledShape('red', '100px', '100px');
 // Questions
     // 1. Not sure why, but I returned an Object that contained an object called "newShape" and assigned it the result of the createShape function
     // 2. I did the same for the styleShape function , and also created a function within the styleShape function, passing parameters into that subfunction instead of the main function
-
-
