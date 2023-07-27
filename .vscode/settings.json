@@ -12,6 +12,13 @@
         "javascript.autoClosingTags": true,
         "editor.defaultFormatter": "vscode.typescript-language-features",
         "editor.suggest.showSnippets": true,
+        "editor.suggest.insertMode": "replace",
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.inlineSuggest.enabled": true
     },
     // json and jsonc
     "[jsonc]": {

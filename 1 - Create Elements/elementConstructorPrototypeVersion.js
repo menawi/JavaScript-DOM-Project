@@ -20,9 +20,10 @@ ElementConstructor.prototype.setElementStyle = function (element, styleOptions) 
 };
 
 // Example usage:
-// const newElement = new ElementConstructor('div', 'squares', document.body, { background: "green", height: "100px", width: "100px" });
+const newElement = new ElementConstructor('div', 'squares', document.body, { background: "green", height: "100px", width: "100px" });
 
-// const createdElement = newElement.createElement();
-// newElement.setElementStyle(createdElement, newElement.style);
+const createdElement = newElement.createElement();
+newElement.setElementStyle(createdElement, newElement.style);
 
-// console.log(newElement);
+console.log(newElement);
+
