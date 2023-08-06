@@ -1,0 +1,165 @@
+# Game.yaml
+
+Title : Box Game
+Author : Menawi
+Version : 1.0
+
+Language: JavaScript 
+Version: ES5
+Component: "Player"
+  Function : Create class calle "Player"
+    Methods: 
+      - Create: document.createElement()
+        Element Type: Div, 
+        Class: Player, 
+        Id: Player-One, 
+        Append: "Game-Container"
+        Style: 
+          color: limegreen, 
+          width: 100px, 
+          height: 100px, 
+          InitialX: 0px, 
+          InitialY: 0px, 
+          Position: Absolute 
+      - Move: by manipulating CSS
+          right: subtract 10px from player's style.left 
+          left: add 10px to player's style.left
+          up: subtract 10px from player's style.top
+          down: add 10px to player's style.top
+      - Event Handler: 
+          Keyboard : 
+            - Arrow Key Right: 
+              Call: Player.Move.right
+            - Arrow Key Left:
+              Call: Player.Move.left
+            - Arrow Key Up:
+              Call: Player.Move.up
+            - Arrow Key Down:
+              Call: Player.Move.down
+
+Component: "Game Container"
+Function: "GameContainer"
+  Methods: 
+    - Create: document.createElement()
+      Element Type: Div, 
+      Class: Game-Container, 
+      Id: Game-Container, 
+      Append: Document.body, 
+      Style: 
+        color: DarkSlateBlue, 
+        width: 100px, 
+        height: 100px, 
+        InitialX: 0px, 
+        InitialY: 0px, 
+        Position: Absolute
+    
+
+Component: "Enemy"
+Function: "CreateEnemy"
+  Methods: 
+    - Create: document.createElement()
+      Element Type: Div, 
+      Class: Enemy, 
+      Append: "Game-Container"
+      Style: 
+        color: red, 
+        width: 100px, 
+        height: 100px, 
+        InitialX: 0px, 
+        InitialY: 0px, 
+        Position: Absolute 
+    - Move: by manipulating CSS
+        right: subtract 8px from enemy's style.left 
+        left: add 8px to enemy's style.left
+        up: subtract 8px from enemy's style.top
+        down: add 8px to enemy's style.top
+    - Enemy Array:
+        forEachEnemy: push enemy to enemy array
+        forEachEnemy: call enemy.move
+        forEachEnemy: call enemy.checkCollision
+
+
+Component: "Timer"
+Function: "CreateTimer"
+  Methods: 
+    - Create: document.createElement()
+      Element Type: Div, 
+      Class: Timer, 
+      Append: "Game-Container"
+      Style: 
+        color: white, 
+        width: 100px, 
+        height: 100px, 
+        border: 2px solid black,
+        InitialX and InitialY: Place the clock at the center top of the game container, outside the gameplay area  
+        Position: Absolute 
+    - Start: setInterval
+    - Stop: clearInterval
+    - Reset: clearInterval, setInterval
+    - Conditional: 
+        - Game Start: 
+          Call: Timer.Start
+        - Game Over: 
+          Call: Timer.Stop
+        - Game Win: 
+          Call: Timer.Stop
+        - Game Restart: 
+          Call: Timer.Reset
+    
+Component: "Game Loop"
+Function: "MainGameLoop"
+  Methods:
+    - Game States: 
+        GameInactive: Elements are rendered but are not moving
+          Call: CreateTimer
+          Call: CreateEnemy
+          Call: CreatePlayer
+          Call: CreateGameContainer
+          Call: CreateGameStartButton
+        GameStart:  
+          Call: StartTimer
+          Call: ActivePlayer
+          Call: ActiveEnemy
+          Call: StartGameLogic
+        GameOver:
+          Call: StopTimer
+          Call: InactivePlayer
+          Call: InactiveEnemy
+          Call: CreateGameOverButton
+          Call: GameOutcome
+             Conditional: 
+              - Game Win: 
+                Call: CreateGameWinButton
+              - Game Lose: 
+                Call: CreateGameLoseButton
+
+Component: "Game Logic"
+Function: "StartGameLogic"
+  Methods:
+    - Conditional: 
+      - Player Collision: 
+        Call: GameOver
+      - Player Win: 
+        Call: GameOver
+      - Player Restart: 
+        Call: GameOver
+      - Player Move: 
+        Call: Player.Move
+      - Enemy Move: 
+        Call: Enemy.Move
+      - Enemy Collision: 
+        Call: Enemy.CheckCollision
+      - Enemy Restart: 
+        Call: Enemy.CheckCollision
+      - Enemy Win: 
+        Call: Enemy.CheckCollision
+      - Timer Start: 
+        Call: Timer.Start
+      - Timer Stop:
+        Call: Timer.Stop
+      - Timer Reset:
+        Call: Timer.Reset
+      - Timer End: 
+        Call: Timer.Stop
+
+

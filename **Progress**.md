@@ -37,3 +37,22 @@ I think I reached the end of the basic understanding of how to :
    3. Style elements
 
 The next step would be to integrate those skills with event listeners, allowing for a dynamic and interactive experience. 
+
+
+### Mental Recap 
+My code should do the following 
+
+1. Create an element
+2. Append the element to the DOM
+3. Style the element
+4. Add event listeners to the element
+5. Add collision detection to the element
+6. Add animation to the element
+7. Add sound to the element
+8. Add a score system to the element
+9. Add a timer to the element
+10. Add a game over screen to the element
+11. Add a start screen to the element
+12. Add a pause screen to the element
+13. Add a restart button to the element
+14. Add a quit button to the element
