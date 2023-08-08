@@ -6,7 +6,7 @@
 function GameContainer() {
     // element
     this.createGameContainer = function () {
-        const gameContainer = document.createElement('div');
+        const gameContainer = document.createElement('divToPToPrintTo');
         // ---
         gameContainer.classList.add('Game-Container');
         gameContainer.id = 'Game-Container-One';
@@ -44,9 +44,13 @@ const activeGameContainer = gameContainer.createGameContainer();
 // Player 
 function Player() {
     this.createPlayer = function (gameContainer) {
+        // 
         gameContainer = document.querySelector('#Game-Container-One')
-        const playerElement = document.createElement('div');
+        // 
+        const playerElement = document.createElement('divToPToPrintTo');
+        // 
         gameContainer.appendChild(playerElement);
+        // 
         playerElement.classList.add('Player');
         playerElement.id = 'Player-One';
         playerElement.style.background = 'limegreen';
@@ -54,11 +58,11 @@ function Player() {
         playerElement.style.width = '50px';
         playerElement.style.position = 'absolute';
         playerElement.style.left = '50%';
-        playerElement.style.top = '75%';
+        playerElement.style.top = '50%';
         playerElement.style.margin = 'auto'
-
+        this.positionX = (gameContainer.clientWidth / 2)
+        this.positionY = (gameContainer.clientHeight / 2)
         return playerElement;
-
     }
 
 
@@ -70,58 +74,124 @@ Player.prototype.removePlayer = function (player, container) {
 
 
 
-// -------------- Bugged Code to fix ----------------
-// [checkpoint::08-06-2023]
-// Bug: You are trying to access the up, down, left, right functions from the move **object**, but you are not returning the object from the move function.
-// Fix: Return the object from the move function.
-// See "Corrected Object" in files
-
-Player.prototype.handlePlayerMovement = function () {
-    const player = this;
-    window.addEventListener('keydown', function (event) {
-        switch (event.key) {
-            case 'ArrowRight':
-                player.move.right();
-                break;
-            case 'ArrowLeft':
-                player.move.left();
-                break
-            case 'ArrowUp':
-                player.move.up();
-                break;
-            case 'ArrowDown':
-                player.move.down();
-                break;
-            default:
-                console.log('No movement');
-                break;
-
-        }
-    });
-}
-
-
 Player.prototype.move = function () {
     const player = this;
-    const playerElement = document.querySelector('.Player#Player-One');
+    const playerElement = document.querySelector('.Player#Player-One')
+    const gameContainer = document.querySelector('.Game-Container#Game-Container-One')
+    const containerWidth = gameContainer.clientWidth;
+    const containerHeight = gameContainer.clientHeight;
+    const playerElementWidth = playerElement.clientWidth;
+    const playerElementHeight = playerElement.clientHeight;
+    const movementUnit = parseInt('10px');
 
     return {
         left: function () {
-            playerElement.style.left = parseInt(playerElement.style.left) - 10 + 'px';
+            player.positionX -= movementUnit;
+            if (player.positionX < 0) {
+                player.positionX = 0;
+            }
+            else {
+                playerElement.style.left = player.positionX + 'px';
+            }
         },
+        // --------- check docs for this part : tricky 
         right: function () {
-            playerElement.style.left = parseInt(playerElement.style.left) + 10 + 'px';
+            // console.log(containerWidth);
+            player.positionX += movementUnit;
+            // check if player is still "before" right border
+            if (player.positionX < (containerWidth - (playerElementWidth + movementUnit))) {
+                playerElement.style.left = player.positionX + 'px';
+            }
+            // check if player exceeds right border 
+            // must factor in the movement unit
+            else if ((player.positionX - movementUnit) >= (containerWidth - (playerElementWidth + movementUnit))) {
+                // If the small box exceeds the right boundary of the container, adjust its position to be just inside the boundary.
+                player.positionX = Math.floor(containerWidth - playerElementWidth);
+                playerElement.style.left = player.positionX + 'px';
+            }
         },
+        // ------------- 
         up: function () {
-            playerElement.style.top = parseInt(playerElement.style.top) - 10 + 'px';
+            player.positionY -= movementUnit;
+            // stop condition
+            if (player.positionY <= 0) {
+                player.positionY = 0
+            }
+            // go condition
+            else {
+                playerElement.style.top = player.positionY + 'px'
+            }
         },
         down: function () {
-            playerElement.style.top = parseInt(playerElement.style.top) + 10 + 'px';
+            // --move
+            player.positionY += movementUnit;
+            // if player Y is greater than ( container height - player height )
+            // you have to think about the player going _out_ of the container, that is why we subtract the player height and movement unit
+            if (
+                (player.positionY >= (containerHeight - movementUnit - playerElementHeight)
+                )
+            )
+            // move player Y position to 
+            {
+                player.positionY = (containerHeight - playerElementHeight)
+                playerElement.style.top = player.positionY + 'px'
+            }
+
+
+            // --else if : player Y is 
+            else if ((player.positionY - movementUnit) < containerHeight) {
+                playerElement.style.top = player.positionY + 'px';
+            }
+
+            else {
+                return console.log('check code');
+            }
+        },
+
+        default: function () {
+            playerElement.style.left = player.positionX;
+            playerElement.style.top = player.positionY;
         }
     }
+
+
 }
 
-const player = new Player(activeGameContainer)
-const activePlayer = player.createPlayer()
-const playerMovement = player.handlePlayerMovement();
-// const deadPlayer = player.removePlayer(activePlayer, activeGameContainer);
+
+
+Player.prototype.handleMovement = function () {
+    const player = this;
+    const movement = player.move()
+    const gameContainer = document.querySelector('.Game-Container#Game-Container-One')
+    window.addEventListener('keydown', function (event) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                movement.left();
+                break;
+            case 'ArrowRight':
+                movement.right();
+                break;
+            case 'ArrowUp':
+                movement.up();
+                break;
+            case 'ArrowDown':
+                movement.down();
+                break;
+            default:
+                console.log('No movement');
+                console.log(gameContainer.clientWidth);
+        }
+    }
+    );
+}
+
+
+
+const player = new Player();
+const playerElement = player.createPlayer(activeGameContainer);
+player.handleMovement();
+
+
+// In CSS, moving right is considered positive, while moving left is considered negative.
+
+// Similarly, moving down is considered positive, while moving up is considered negative

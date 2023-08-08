@@ -1,0 +1,9 @@
+/* * {
+    filter: invert(100%) !important;
+    mix-blend-mode: difference;
+} */
+* {
+    /* filter: invert(100%); */
+    background-color: black;
+    mix-blend-mode: difference;
+}

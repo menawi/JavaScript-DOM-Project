@@ -12,14 +12,23 @@
         "javascript.autoClosingTags": true,
         "editor.defaultFormatter": "vscode.typescript-language-features",
         "editor.suggest.showSnippets": true,
-        "editor.suggest.insertMode": "replace",
+        // "editor.suggest.insertMode": "replace",
         "editor.quickSuggestions": {
             "comments": "on",
             "strings": "on",
             "other": "on"
         },
-        "editor.inlineSuggest.enabled": true
+        // 
+        "editor.inlineSuggest.enabled": true,
+        "editor.snippetSuggestions": "top",
+        "editor.minimap.enabled": false,
+        "editor.wordWrap": "wordWrapColumn",
+        "wordwrap": "on",
+        "editor.wordWrapColumn": 80,
+        // 
     },
+    "easycode.codeLens": false,
+    "editor.minimap.enabled": false,
     // json and jsonc
     "[jsonc]": {
         "editor.quickSuggestions": {
@@ -46,6 +55,7 @@
         "editor.fontSize": 12,
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.wordWrap": "wordWrapColumn",
+        "wordwrap": "on",
         "editor.wordWrapColumn": 80,
     },
     // preview

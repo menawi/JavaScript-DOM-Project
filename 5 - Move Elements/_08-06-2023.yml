@@ -60,4 +60,9 @@ Current Issue:
 Next Session Plan:
 - In the next session, we'll focus on resolving the current issue by passing the movement object to the `handlePlayerMovement` function and ensuring the player's movement functions work correctly.
 
-End
+
+// -------------- Bugged Code to fix ----------------
+// [checkpoint::08-06-2023]
+// Bug: You are trying to access the up, down, left, right functions from the move **object**, but you are not returning the object from the move function.
+// Fix: Return the object from the move function.
+// See "Corrected Object" in files

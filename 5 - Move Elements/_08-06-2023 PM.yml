@@ -1,0 +1,72 @@
+[session::08-06-2023 PM]
+
+---
+!!!NOTE
+In CSS:
+  Moving right += X
+  Moving down  += Y
+
+---
+
+GameContainer:
+  createGameContainer:
+    - Description: Creates a centered game container element with specified styles.
+    - Steps:
+      - Created a new 'div' element for the game container.
+      - Added the 'Game-Container' class and 'Game-Container-One' id to the container.
+      - Applied styles to center the container and set its background color.
+      - Appended the game container to the document body.
+      - Returns the created game container element.
+
+  removeGameContainer:
+    - Description: Removes the game container from the document body.
+    - Steps:
+      - Retrieved the game container element with the 'Game-Container-One' id.
+      - Removed the game container element from the document body.
+
+Player:
+  createPlayer:
+    - Description: Creates a player element and appends it to the game container.
+    - Steps:
+      - Retrieves the game container element with the 'Game-Container-One' id.
+      - Creates a new 'div' element for the player.
+      - Appends the player to the game container.
+      - Adds the 'Player' class and 'Player-One' id to the player element.
+      - Applies styles to set the player's appearance and initial position.
+      - Calculates and sets the player's initial position relative to the game container's size.
+      - Returns the created player element.
+
+  removePlayer:
+    - Description: Removes the player element from the game container.
+    - Steps:
+      - Retrieves the player element with the 'Player-One' id.
+      - Removes the player element from the game container.
+
+  move:
+    - Description: Defines movement functions for the player.
+    - Steps:
+      - Retrieves the player element with the 'Player-One' id.
+      - Retrieves the game container element with the 'Game-Container-One' id.
+      - Defines a movementUnit to adjust the player's position by 10 pixels in each direction.
+      - Returns an object containing movement functions for left and right directions.
+      - Each movement function adjusts the player's position within the game container's boundaries.
+        - The 'left' function decreases the player's positionX by the movementUnit and ensures the player stays within the container's left boundary.
+        - The 'right' function increases the player's positionX by the movementUnit and ensures the player stays within the container's right boundary.
+
+  handleMovement:
+    - Description: Implements event handling for player movement using arrow keys.
+    - Steps:
+      - Retrieves the movement object returned by the 'move' function.
+      - Listens for 'keydown' events on the window.
+      - Calls the appropriate player movement function based on the pressed arrow key.
+
+Main Issues Faced:
+- The game container was not centered initially, but it was resolved by setting appropriate styles, such as 'position: fixed' and 'margin: auto'.
+- The 'createPlayer' function didn't return the player element, but it was resolved by adding the return statement.
+- The 'move' function didn't return an object with movement functions for up and down directions, but it was corrected to return functions for left and right directions.
+
+Current Issue:
+- The 'handleMovement' function is not handling player movement for up and down directions since the 'move' function didn't return movement functions for these directions.
+
+Next Session Plan:
+- In the next session, we'll focus on updating the 'move' function to include movement functions for up and down directions and handle player movement for all directions in the 'handleMovement' function.

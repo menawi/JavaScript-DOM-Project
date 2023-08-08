@@ -6,6 +6,8 @@ Version : 1.0
 
 Language: JavaScript 
 Version: ES5
+
+
 Component: "Player"
   Function : Create class calle "Player"
     Methods: 
@@ -36,6 +38,13 @@ Component: "Player"
               Call: Player.Move.up
             - Arrow Key Down:
               Call: Player.Move.down
+Status: 
+Issues:   
+    - Player NOT move upwards :
+      Solution: Typo in player.positionX
+    - Choppy Movement
+    - Player moves out of game container
+
 
 Component: "Game Container"
 Function: "GameContainer"
@@ -52,6 +61,7 @@ Function: "GameContainer"
         InitialX: 0px, 
         InitialY: 0px, 
         Position: Absolute
+Status: Complete ✅
     
 
 Component: "Enemy"
