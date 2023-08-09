@@ -38,12 +38,8 @@ Component: "Player"
               Call: Player.Move.up
             - Arrow Key Down:
               Call: Player.Move.down
-Status: 
-Issues:   
-    - Player NOT move upwards :
-      Solution: Typo in player.positionX
-    - Choppy Movement
-    - Player moves out of game container
+Status: Complete ✅
+Issues: Solved 
 
 
 Component: "Game Container"

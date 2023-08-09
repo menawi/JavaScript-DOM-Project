@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>w3practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            background-color: #f1f1f1;
+            filter: invert(1);
+        }
+
+        /* Style the buttons */
+        .btn {
+            border: 2px dashed #ccc;
+            outline: none;
+            padding: 10px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Style the active class, and buttons on mouse-over */
+        .active,
+        .btn:hover {
+            filter: invert(1);
+            ;
+            background-color: #666;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Active Button</h1>
+    <p>Highlight the active/current (pressed) button.</p>
+
+    <div id="myDIV">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+    </div>
+
+</body>
+
+<script type="module" src="./main.js"></script>
+<script type="module" src="./myVersion.js"></script>
+
+</html>

@@ -4,13 +4,14 @@
     "editor.formatOnSave": true,
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 80,
+    "editor.lineHeight": 2,
     // terminal 
     "terminal.integrated.fontSize": 12,
     // javascript
     "[javascript]": {
         "editor.maxTokenizationLineLength": 2500,
         "javascript.autoClosingTags": true,
-        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.suggest.showSnippets": true,
         // "editor.suggest.insertMode": "replace",
         "editor.quickSuggestions": {

@@ -1,66 +1,96 @@
 
 
 
-checkpoint: at 
-        // --------- check docs for this part : tricky 
-        right: function () {
-            // console.log(containerWidth);
-            player.positionX += movementUnit;
-            // check if player is still "before" right border
-            if (player.positionX < (containerWidth - (playerElementWidth + movementUnit))) {
-                playerElement.style.left = player.positionX + 'px';
-            }
-            // check if player exceeds right border 
-            // must factor in the movement unit
-            else if ((player.positionX - movementUnit) >= (containerWidth - (playerElementWidth + movementUnit))) {
-                // If the small box exceeds the right boundary of the container, adjust its position to be just inside the boundary.
-                player.positionX = Math.floor(containerWidth - playerElementWidth);
-                playerElement.style.left = player.positionX + 'px';
-            }
-        },
-        // ------------- 
-        up: function () {
-            player.positionY -= movementUnit;
-            // stop condition
-            if (player.positionY <= 0) {
-                player.positionY = 0
-            }
-            // go condition
-            else {
-                playerElement.style.top = player.positionY + 'px'
-            }
-        },
-        down: function () {
-            // --move
-            player.positionY += movementUnit;
-            // if player Y is greater than ( container height - player height )
-            // you have to think about the player going _out_ of the container, that is why we subtract the player height and movement unit
-            if (
-                (player.positionY >= (containerHeight - movementUnit - playerElementHeight)
-                )
-            )
-            // move player Y position to 
-            {
-                player.positionY = (containerHeight - playerElementHeight)
-                playerElement.style.top = player.positionY + 'px'
-            }
+checkpoint: 08-07-2023
+next steps:
+    - Review the movement logic below and explain it
+    - Review event listener for the logic below and explain it
+    - Use the review to guide your creation of the enemy constructor
+    - Build the enemy constructor
+reference:
+        Component: Enemy 
+            Function: "CreateEnemy"
+            Methods: 
+                - Create: document.createElement()
+                Element Type: Div, 
+                Class: Enemy, 
+                Append: "Game-Container"
+                Style: 
+                    color: red, 
+                    width: 100px, 
+                    height: 100px, 
+                    InitialX: 0px, 
+                    InitialY: 0px, 
+                    Position: Absolute 
+                - Move: by manipulating CSS
+                    right: subtract 8px from enemy's style.left 
+                    left: add 8px to enemy's style.left
+                    up: subtract 8px from enemy's style.top
+                    down: add 8px to enemy's style.top
+                - Enemy Array:
+                    forEachEnemy: push enemy to enemy array
+                    forEachEnemy: call enemy.move
+                    forEachEnemy: call enemy.checkCollision
+        
+#         // --------- check docs for this part : tricky 
+#         right: function () {
+#             // console.log(containerWidth);
+#             player.positionX += movementUnit;
+#             // check if player is still "before" right border
+#             if (player.positionX < (containerWidth - (playerElementWidth + movementUnit))) {
+#                 playerElement.style.left = player.positionX + 'px';
+#             }
+#             // check if player exceeds right border 
+#             // must factor in the movement unit
+#             else if ((player.positionX - movementUnit) >= (containerWidth - (playerElementWidth + movementUnit))) {
+#                 // If the small box exceeds the right boundary of the container, adjust its position to be just inside the boundary.
+#                 player.positionX = Math.floor(containerWidth - playerElementWidth);
+#                 playerElement.style.left = player.positionX + 'px';
+#             }
+#         },
+#         // ------------- 
+#         up: function () {
+#             player.positionY -= movementUnit;
+#             // stop condition
+#             if (player.positionY <= 0) {
+#                 player.positionY = 0
+#             }
+#             // go condition
+#             else {
+#                 playerElement.style.top = player.positionY + 'px'
+#             }
+#         },
+#         down: function () {
+#             // --move
+#             player.positionY += movementUnit;
+#             // if player Y is greater than ( container height - player height )
+#             // you have to think about the player going _out_ of the container, that is why we subtract the player height and movement unit
+#             if (
+#                 (player.positionY >= (containerHeight - movementUnit - playerElementHeight)
+#                 )
+#             )
+#             // move player Y position to 
+#             {
+#                 player.positionY = (containerHeight - playerElementHeight)
+#                 playerElement.style.top = player.positionY + 'px'
+#             }
 
 
-            // --else if : player Y is 
-            else if ((player.positionY - movementUnit) < containerHeight) {
-                playerElement.style.top = player.positionY + 'px';
-            }
+#             // --else if : player Y is 
+#             else if ((player.positionY - movementUnit) < containerHeight) {
+#                 playerElement.style.top = player.positionY + 'px';
+#             }
 
-            else {
-                return console.log('check code');
-            }
-        },
+#             else {
+#                 return console.log('check code');
+#             }
+#         },
 
-        default: function () {
-            playerElement.style.left = player.positionX;
-            playerElement.style.top = player.positionY;
-        }
-    }
+#         default: function () {
+#             playerElement.style.left = player.positionX;
+#             playerElement.style.top = player.positionY;
+#         }
+#     }
 
 
-}
+# }
