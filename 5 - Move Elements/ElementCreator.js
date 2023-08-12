@@ -184,123 +184,79 @@ const playerElement = player.createPlayer(activeGameContainer);
 //
 player.handleMovement();
 
-//  -------------- Enemy
+//  ------ Enemy
+
+// Summary :
+// Enemy movement logic is challenging
+// Using setTimeout is still foggy
+// An easier step would be to update enemy position in the container
+// Random enemy movement generation will be fun , and will be a stepping stone to the next step
+
+// ----------
 
 function Enemy() {
-  this.createEnemy = function (gameContainer) {
-    const enemyElement = document.createElement("div");
-    gameContainer.appendChild(enemyElement);
-    enemyElement.classList.add("Enemy");
-    enemyElement.style.background = "red";
-    enemyElement.style.height = "50px";
-    enemyElement.style.width = "50px";
-    enemyElement.style.position = "absolute";
-    enemyElement.style.left = "0";
-    enemyElement.style.top = "0";
-    enemyElement.style.margin = "auto";
-    this.positionX = 0;
-    this.positionY = 0;
-    return enemyElement;
-  };
-
-  this.randomizePosition = function () {
-    const enemy = this;
-    const enemyElement = document.querySelector(".Enemy");
-    const gameContainer = document.querySelector(
-      ".Game-Container#Game-Container-One"
-    );
-    const containerWidth = gameContainer.clientWidth;
-    const containerHeight = gameContainer.clientHeight;
-    const enemyElementWidth = enemyElement.clientWidth;
-    const enemyElementHeight = enemyElement.clientHeight;
-
-    // randomize position
-    enemy.positionX = Math.floor(Math.random() * containerWidth);
-    enemy.positionY = Math.floor(Math.random() * containerHeight);
-    // check if enemy is still "before" right border
-    if (enemy.positionX < containerWidth - enemyElementWidth) {
-      enemyElement.style.left = enemy.positionX + "px";
-    }
-    // check if enemy exceeds right border
-    // must factor in the movement unit : is being constantly added so you must consistently remove it
-    else if (enemy.positionX >= containerWidth - enemyElementWidth) {
-      // If the small box exceeds the right boundary of the container, adjust its position to be just inside the boundary.
-      enemy.positionX = containerWidth - enemyElementWidth;
-      enemyElement.style.left = enemy.positionX + "px";
-    }
-    // check if enemy is still "before" bottom border
-    if (enemy.positionY < containerHeight - enemyElementHeight) {
-      enemyElement.style.top = enemy.positionY + "px";
-    }
-    // check if enemy exceeds bottom border
-    // must factor in the movement unit : is being constantly added so you must consistently remove it
-    else if (enemy.positionY >= containerHeight - enemyElementHeight) {
-      // If the small box exceeds the right boundary of the container, adjust its position to be just inside the boundary.
-      enemy.positionY = containerHeight - enemyElementHeight;
-      enemyElement.style.top = enemy.positionY + "px";
-    }
-  };
-}
-
-Enemy.prototype.moveEnemy = function () {
-  const enemy = this;
-  const enemyElement = document.querySelector(".Enemy");
+  const enemyElement = document.createElement("div");
+  const enemyArray = [];
   const gameContainer = document.querySelector(
     ".Game-Container#Game-Container-One"
   );
-  const containerWidth = gameContainer.clientWidth;
-  const containerHeight = gameContainer.clientHeight;
-  const enemyElementWidth = enemyElement.clientWidth;
-  const enemyElementHeight = enemyElement.clientHeight;
-  const movementUnit = parseInt("10px");
+  this.appendEnemy = function () {
+    enemyElement.classList.add("Enemy");
+    gameContainer.appendChild(enemyElement);
+    enemyElement.style.background = "red";
+    enemyElement.style.height = "25px";
+    enemyElement.style.width = "25px";
+    enemyElement.style.position = "absolute";
+    enemyElement.style.margin = "auto";
+    enemyArray.push(enemyElement);
+  };
+}
 
-  enemy.enemyMovement = function () {
-    enemy.positionX += movementUnit + "px";
-    // left
-    if (enemy.positionX < 0) {
-      enemy.style.left = 0;
+Enemy.prototype.appear = function () {
+  // need a timer
+  // need to update position randomly
+  const enemy = this;
+  const enemyElement = document.querySelector(".Enemy");
+  const enemyWidth = enemyElement.clientWidth;
+  const enemyHeight = enemyElement.clientHeight;
+  let enemyPosX = enemyElement.style.left;
+  let enemyPosY = enemyElement.style.top;
+
+  enemy.checkBoundaries = function () {
+    // check if enemy is within boundaries of the game before update position // if out of bounds , run update position again
+    // -----------------
+    // Run update position
+    this.updatePosition();
+    // boundary left
+    if (enemyPosX < 0) {
+      this.updatePosition().x;
     }
-    enemyElement.style.left = enemy.positionX + "px";
-    // right
-    if (enemy.positionX > containerWidth - enemyElementWidth) {
-      enemy.positionX = containerWidth - enemyElementWidth;
-      enemyElement.style.left = enemy.positionX + "px";
+    // boundary right
+    else if (enemyPosX > gameContainer.clientWidth - enemyWidth) {
+      this.updatePosition().x;
+    } // boundary top
+    else if (enemyPosY < 0) {
+      this.updatePosition().y;
     }
-    // up
-    if (enemy.positionY < 0) {
-      enemy.positionY = 0;
-      enemyElement.style.top = 0 + "px";
-    } else if (enemy.positionY > containerHeight - enemyElementHeight) {
-      enemy.positionY = containerHeight - enemyElementHeight;
-      enemyElement.style.top = enemy.positionY;
-    } else {
-      return 0;
+    // boundary bottom
+    else if (enemyPosY > gameContainer.clientHeight - enemyHeight) {
+      this.updatePosition().y;
     }
-    setTimeout(function () {
-      enemy.moveEnemy();
-    }, 1000);
+  };
+
+  enemy.generateRandomPosition = function () {
+    const x = Math.floor(Math.random() * 100);
+    const y = Math.floor(Math.random() * 100);
+    return { x: x, y: y };
+  };
+
+  enemy.updatePosition = function () {
+    enemyPosX = this.generateRandomPosition().x;
+    enemyPosY = this.generateRandomPosition().y;
+    return { x: enemyPosX, y: enemyPosY };
   };
 };
 
-const newEnemy = new Enemy();
-const appendEnemy = newEnemy.createEnemy(activeGameContainer);
-newEnemy.moveEnemy();
-// setTimeout(() => {
-//   setInterval(() => {
-//     newEnemy.moveEnemy(enemy1);
-//   }, 2000);
-// }, 1000);
-
-// setTimeout(() => {
-//   setInterval(() => {
-//     newEnemy.randomizePosition();
-//   }, 2000);
-// }, 1000);
-
-// function addNumbers() {
-//   let result = 2 + 3;
-//   console.log(result);
-//   setTimeout(addNumbers, 1000);
-// }
-
-// console.log(addNumbers());
+const enemy = new Enemy();
+const firstEnemy = enemy.appendEnemy();
+firstEnemy.appear();
