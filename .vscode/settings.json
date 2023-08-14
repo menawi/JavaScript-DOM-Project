@@ -74,6 +74,7 @@
         "json": true,
         "jsconc": true,
     },
+    // "github.copilot.editor.enableAutoCompletions": true,
     "files.associations": {
         "Sets.C": "cpp"
     }
