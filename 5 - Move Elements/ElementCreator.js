@@ -12,9 +12,13 @@ function GameContainer() {
 }
 
 // -- It works!
+// main instance
 const gameContainerInstance = new GameContainer();
+// object instance to derive variables from
+// "ports" or "bridges" over all prototypes from main instance to object instance and then to variable instance
 const gameContainerObject = Object.create(gameContainerInstance);
-const createdGameContainer = gameContainerObject.createGameContainer();
+// variable instance
+// specifc states etc
 
 console.log(createdGameContainer);
 
@@ -40,34 +44,7 @@ GameContainer.prototype.styleGameContainer = function () {
   return this;
 };
 
-gameContainerInstance.styleGameContainer().styleContainer();
-
-// GameContainer.prototype.styleGameContainer = function () {
-//   // Turn this into an Object array with key/value pairs using Object.keys
-//   this.containerBackground = "purple";
-//   this.containerHeight = "50vh";
-//   this.containerWidth = "50vw";
-//   this.containerPosition = "fixed";
-//   this.containerTop = "25%";
-//   this.containerLeft = "25%";
-//   this.margin = "auto";
-
-//   // Turn this into a for loop that iterates through the Object array
-//   const container = this.createGameContainer();
-//   container.style.background = this.containerBackground;
-//   container.style.height = this.containerHeight;
-//   container.style.width = this.containerWidth;
-//   container.style.position = this.containerPosition;
-//   container.style.top = this.containerTop;
-//   container.style.left = this.containerLeft;
-//   container.style.margin = this.margin;
-
-//   return this;
-// };
-
-// gameContainerInstance.styleGameContainer();
-
-// ---------------------
+// --------------
 
 // Player
 function Player() {
@@ -76,20 +53,36 @@ function Player() {
     parentElement.appendChild(playerElement);
     playerElement.classList.add("Player");
     playerElement.id = "Player-One";
-    playerElement.style.background = "limegreen";
-    playerElement.style.height = "50px";
-    playerElement.style.width = "50px";
-    playerElement.style.position = "absolute";
-    playerElement.style.left = "50%";
-    playerElement.style.top = "50%";
-    playerElement.style.margin = "auto";
     return playerElement;
   };
   return this;
 }
 
-const player = new Player();
-// const activePlayer = player.createPlayer(activeGameContainer);
+const playerInstance = new Player();
+const playerObject = Object.create(playerInstance);
+console.log(playerObject);
+
+Player.prototype.stylePlayer = function () {
+  const player = this.createPlayer();
+  this.activePlayerStyles = {
+    background: "limegreen",
+    height: "50px",
+    width: "50px",
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    margin: "auto",
+  };
+
+  this.activatePlayer = function () {
+    Object.keys(this.activePlayerStyles).forEach((style) => {
+      player.style[style];
+    });
+  };
+  return this;
+};
+
+// const activePlayer = playerObject.stylePlayer().acti
 
 function Enemy() {
   this.enemyArray = [];

@@ -1,6 +1,6 @@
 ---
 created: 08-18-2023
-last-reviewed: <%+ tp.file.last_modified_date("MM-DD-Y")%>
+last-reviewed: NaN
 stage: 
 --- 
 #red 
