@@ -1,0 +1,44 @@
+/* liner-gradient */
+
+
+
+
+#main-container {
+    border: 2px dashed #ccc;
+    width: 50vh;
+    height: 50vh;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+}
+
+#main-container:hover {
+    border: 2px solid green;
+}
+
+#sub-container {
+    border: 2px dashed #ccc;
+    width: 25vh;
+    height: 25vh;
+    position: relative;
+    align-items: center;
+    top: 25%;
+    left: 25%;
+}
+
+#sub-container:hover {
+    border: 2px solid green;
+}
+
+#main-button {
+    border: 2px dashed #ccc;
+    position: relative;
+    width: auto;
+    height: 40%;
+}
+
+#main-button:hover {
+    border: 2px solid green;
+    cursor: crosshair;
+    filter: invert(100%);
+}
