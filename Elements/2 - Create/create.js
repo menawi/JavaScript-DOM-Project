@@ -30,21 +30,3 @@ styleElements(container, {
   top: "50%",
   left: "50%",
 });
-
-function removeItems(item) {
-  item.remove();
-  console.log(`removed ${item.tagName}`);
-}
-
-const removeButton = createElements("button", "remove-button");
-removeButton.textContent = "Remove";
-appendElements(removeButton, container);
-styleElements(removeButton, {
-  background: "blue",
-  position: "absolute",
-  top: "-40vh",
-  left: "-40vw",
-});
-removeButton.addEventListener("click", () => {
-  removeItems(container);
-});
