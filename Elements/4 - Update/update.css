@@ -1,0 +1,41 @@
+/* what should i put in the root?  */
+:root {
+    margin: 1%;
+    padding: 1%;
+    /* border: 0.125vh solid rgb(213, 117, 0) !important; */
+}
+
+html {
+    margin: 1%;
+    padding: 1%;
+    /* border: 0.125vh solid rgb(213, 117, 0) !important; */
+}
+
+body {
+    margin: 1%;
+    padding: 1%;
+    /* border: 0.125vh solid hotpink !important; */
+}
+
+#main-container {
+    position: fixed;
+    border: calc(1vh) dashed #ccc;
+    width: calc(100vh / 2);
+    height: calc(100vh / 2);
+    top: calc(100vh/2 - 100vh/4);
+    left: calc(100vw/2 - 100vh/4);
+    /* background-color: rgba(0, 255, 0, 0.2); */
+    background-color: rgb(51, 112, 226)
+}
+
+/* Divide the parent by 2 */
+/* Subtract 1/2 from the parent */
+
+.box {
+    position: absolute;
+    border: calc(0.25vh) dashed lime;
+    width: 50px;
+    height: 50px;
+    top: calc(500px / 2 - 25px);
+    left: calc(500px / 2 - 25px);
+}
