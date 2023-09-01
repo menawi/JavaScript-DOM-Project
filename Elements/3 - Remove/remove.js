@@ -96,14 +96,28 @@ const styledRemoverButton = styleInstance.basicStyling(removerButton, {
   textAlign: "center",
 });
 
+// -- This is the trial version - using console.log();
+// function removeChildren(parent) {
+//   if (parent) {
+//     let children = parent.children;
+//     console.log(children);
+//   } else {
+//     let children = document.body.children;
+//     console.log(children);
+//   }
+// }
+// removeChildren(blueSq);
+// removeChildren();
+// -- end trial
+
 function removeChildren(parent) {
   if (parent) {
     let children = parent.children;
-    console.log(children);
+    parent.remove(children);
+    console.log(
+      `These children elements were removed ${children} from this parent ${parent}`
+    );
   } else {
-    let children = document.body.children;
-    console.log(children);
+    console.log(`No children to remove.`);
   }
 }
-removeChildren(blueSq);
-removeChildren();
