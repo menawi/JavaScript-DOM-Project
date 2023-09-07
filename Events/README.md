@@ -36,7 +36,6 @@
 - Create a code snippet to add and remove an event listener.
 
 ---
-
 ## Real-World Examples (20 minutes)
 - Present real-world examples of frontend applications using event listeners.
 - Discuss how event listeners improve user interactions.
