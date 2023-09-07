@@ -11,7 +11,7 @@ function addEvent(el_selector, ev_type) {
   });
 }
 
-// addEvent(".box", "click");
+addEvent(".box", "click");
 
 // Visual Version that changes elements backgroundColor
 function addVisualEvent(el, ev, sty) {
