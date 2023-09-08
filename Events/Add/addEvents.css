@@ -1,0 +1,40 @@
+:root {}
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-item {
+    background-color: #3498db;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+}
+
+.flex-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(65, 105, 225, 0.5);
+    padding: 1em;
+    border-radius: 5%
+}
+
+button:hover {
+    background-color: rgba(54, 85, 177, 0.859);
+    transform: scale(1.15);
+}
