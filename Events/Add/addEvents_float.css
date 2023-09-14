@@ -1,0 +1,21 @@
+.container {
+    background: #000;
+    width: 50rem;
+    height: 50rem;
+    display: block;
+    position: absolute;
+    margin: 1.5rem;
+    top: calc((50rem/8) - 1.5rem);
+    left: calc((50rem/8) + 25rem);
+}
+
+.box {
+    background-color: royalblue;
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+    position: relative;
+    margin: 5%;
+    top: calc(100%/2 - 10%);
+    left: calc(100%/2 - 20%);
+}
