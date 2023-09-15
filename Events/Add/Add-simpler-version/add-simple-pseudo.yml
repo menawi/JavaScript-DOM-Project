@@ -1,0 +1,16 @@
+name: add-simpler-version-00
+
+# ---
+FUNCTION: checkAttribute
+PARAMETERS: element
+  OPERATION: check element class attribute ; if it meets conditions below , then modify it ; if it does not meet conditions below, then do nothing
+    CONDITIONAL:  
+      CASE: (element) has attribute CLASS with value "active-color" ?
+        - true: remove "active-color" from attribute CLASS
+      CASE: (element) does not have attribute CLASS with value "active-color" ?
+        - true: add "active-color" to attribute CLASS
+    EXIT: CONDITIONAL
+  EXIT: OPERATION
+EXIT: FUNCTION
+# --- 
+

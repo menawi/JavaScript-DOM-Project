@@ -12,8 +12,8 @@
         "editor.maxTokenizationLineLength": 2500,
         "javascript.autoClosingTags": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.suggest.showSnippets": true,
-        // "editor.suggest.insertMode": "replace",
+        // "editor.suggest.showSnippets": true,
+        "editor.lineHeight": 2.5,
         "editor.quickSuggestions": {
             "comments": "on",
             "strings": "on",
